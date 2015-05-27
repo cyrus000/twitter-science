@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "events": "^1.0.2",
-    "limdu": "^0.6.0",
+    "meet-limdu": "git://github.com/cyrus000/limdu.git",
     "path": "^0.11.14",
     "twitter": "^1.2.5"
   }

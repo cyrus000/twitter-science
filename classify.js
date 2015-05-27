@@ -1,6 +1,6 @@
 var fs = require('fs');
 var config = require('./etc/config');
-var limdu = require('limdu');
+var limdu = require('meet-limdu');
 var twitterConfig = require('./etc/twitterConfig');
 var Twitter = require('twitter');
 var Filter = require('./lib/filter');
@@ -17,7 +17,7 @@ data = formatTrainingData(data,'happy', config.dataFiles.happyTweets);
 data = formatTrainingData(data,'sad', config.dataFiles.sadTweets);
 
 var TextClassifier = limdu.classifiers.multilabel.BinaryRelevance.bind(0, {
-  binaryClassifierType: limdu.classifiers.SvmJs.bind(0, {C: 1.0})
+  binaryClassifierType: limdu.classifiers.SvmLinear.bind(0, {C: 1.0})
 });
 
 var classifier = new limdu.classifiers.EnhancedClassifier({
