@@ -29,11 +29,28 @@ var classifier = new limdu.classifiers.EnhancedClassifier({
 classifier.trainBatch(data);
 
 
-console.log(classifier.classify("work shoes are so torn up "));
+if(false) {
+  setTimeout(function(){
+    fs.readFileSync('./data/sampleTweets.txt').toString().split('\n').forEach(function(line) {
+      var str = prepareString.prepare(line);
+      if(str) {
+        console.log(classifier.classify(str)[0] + ' --- ' + line);
+      }
+
+    })
+  },1000);
+
+}
+
+
 var client = new Twitter(twitterConfig);
 
 client.stream('statuses/sample', {},  function(stream){
   stream.on('data', function(tweet) {
+    if(tweet.user.lang !== 'en') {
+      return;
+    }
+
     tweet = tweet.text;
     var formattedTweet = prepareString.prepare(tweet);
     if(filter.passFilter(tweet) && formattedTweet) {

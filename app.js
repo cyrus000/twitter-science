@@ -18,6 +18,7 @@ saveTweets('#sad', config.dataFiles.sadTweets);
 function saveTweets(filterOn, file) {
   var tweets = new CollectTweets(client, filterOn);
   tweets.on('tweet', function(tweet) {
+
     var formattedTweet = prepareString.prepare(tweet);
     if(filter.passFilter(tweet) && formattedTweet) {
       dataSaver.appendToFile(file, formattedTweet);
